@@ -44,17 +44,12 @@ export class TonProofService {
       if (!address.equals(wantedAddress)) {
         return false;
       }
-      console.log("payload.proof.domain.value", payload.proof.domain.value)
-      console.log("allowedDomains", allowedDomains)
 
       if (!allowedDomains.includes(payload.proof.domain.value)) {
         return false;
       }
 
       const now = Math.floor(Date.now() / 1000);
-      console.log("now - \n", now - validAuthTime > payload.proof.timestamp)
-      console.log("validAuthTime", validAuthTime)
-      console.log("timestamp", payload.proof.timestamp)
 
       if (now - validAuthTime > payload.proof.timestamp) {
         return false;
